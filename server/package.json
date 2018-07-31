@@ -1,0 +1,27 @@
+{
+  "name": "merino-billing-server",
+  "version": "0.1.0",
+  "description": "Billing application for freelancers",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mannymerino/merino-billing.git"
+  },
+  "author": "Manny Merino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mannymerino/merino-billing/issues"
+  },
+  "homepage": "https://github.com/mannymerino/merino-billing#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.6"
+  }
+}

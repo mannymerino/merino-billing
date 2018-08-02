@@ -18,4 +18,4 @@ const clientSchema = BaseRecord.discriminator('Client', new Schema({
     payOnly: Boolean
 }));
 
-module.exports = mongoose.model('Client', clientSchema);
+module.exports = mongoose.model('Client', clientSchema.schema);

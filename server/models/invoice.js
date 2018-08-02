@@ -11,4 +11,4 @@ const invoiceSchema = BaseRecord.discriminator('Invoice', new Schema({
     notes: String
 }));
 
-module.exports = mongoose.model('Invoice', invoiceSchema);
+module.exports = mongoose.model('Invoice', invoiceSchema.schema);

@@ -8,4 +8,4 @@ const chargeTypeSchema = BaseRecord.discriminator('ChargeType', new Schema({
     chargeType: String
 }));
 
-module.exports = mongoose.model('ChargeType', chargeTypeSchema);
+module.exports = mongoose.model('ChargeType', chargeTypeSchema.schema);

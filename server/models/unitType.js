@@ -8,4 +8,4 @@ const unitTypeSchema = BaseRecord.discriminator('UnitType', new Schema({
     unitType: String
 }));
 
-module.exports = mongoose.model('UnitType', unitTypeSchema);
+module.exports = mongoose.model('UnitType', unitTypeSchema.schema);

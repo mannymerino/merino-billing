@@ -8,4 +8,4 @@ const contactTypeSchema = BaseRecord.discriminator('ContactType', new Schema({
     name: String
 }));
 
-module.exports = mongoose.model('ContactType', contactTypeSchema);
+module.exports = mongoose.model('ContactType', contactTypeSchema.schema);

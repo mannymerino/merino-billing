@@ -8,4 +8,4 @@ const statusSchema = BaseRecord.discriminator('Status', new Schema({
     status: String
 }));
 
-module.exports = mongoose.model('Status', statusSchema);
+module.exports = mongoose.model('Status', statusSchema.schema);

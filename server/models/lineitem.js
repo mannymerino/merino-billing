@@ -13,4 +13,4 @@ const lineitemSchema = BaseRecord.discriminator('Lineitem', new Schema({
     amountPaid: Number
 }));
 
-module.exports = mongoose.model('Lineitem', lineitemSchema);
+module.exports = mongoose.model('Lineitem', lineitemSchema.schema);

@@ -10,4 +10,4 @@ const clientContactSchema = BaseRecord.discriminator('ClientContact', new Schema
     contactValue: String
 }));
 
-module.exports = mongoose.model('ClientContact', clientContactSchema);
+module.exports = mongoose.model('ClientContact', clientContactSchema.schema);

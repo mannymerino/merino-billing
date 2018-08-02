@@ -14,4 +14,4 @@ const projectSchema = BaseRecord.discriminator('Project', new Schema({
     notes: String
 }));
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Project', projectSchema.schema);

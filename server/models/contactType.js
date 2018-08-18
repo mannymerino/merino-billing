@@ -1,11 +1,13 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const BaseRecord = require('./baseRecord');
 const Schema = mongoose.Schema;
 
-const contactTypeSchema = BaseRecord.discriminator('ContactType', new Schema({
-    name: String
-}));
+const contactTypeSchema = new Schema({
+    typeName: String,
+    default: Boolean,
+    modifiedDate: { type: Date, default: Date.now },
+    modifiedBy: String
+});
 
-module.exports = mongoose.model('ContactType', contactTypeSchema.schema);
+module.exports = mongoose.model('ContactType', contactTypeSchema);

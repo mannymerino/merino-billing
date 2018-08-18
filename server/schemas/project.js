@@ -2,8 +2,8 @@
 
 const graphql = require('graphql');
 const ProjectModel = require('../models/project');
-const {ClientSchema, ClientModel} = require('./client');
-// const {InvoiceSchema, InvoiceModel} = require('./invoice');
+const {ClientType, ClientModel} = require('./client');
+// const {InvoiceType, InvoiceModel} = require('./invoice');
 
 const {
     GraphQLObjectType,
@@ -14,7 +14,7 @@ const {
     GraphQLNonNull
 } = graphql;
 
-const ProjectSchema = new GraphQLObjectType({
+const ProjectType = new GraphQLObjectType({
     name: 'Project',
     fields: () => ({
         id: { type: GraphQLID },
@@ -24,14 +24,15 @@ const ProjectSchema = new GraphQLObjectType({
         startDate: { type: GraphQLString }, // TODO: GraphQLScalarType?
         referenceNumber: { type: GraphQLString },
         notes: { type: GraphQLString },
-        client: { 
-            type: ClientSchema,
+        client: {   // TODO: resolve --> throws error in this modularized version:
+                    // "The type of Project.client must be Output Type but got: undefined."
+            type: ClientType,
             resolve(parent, args) {
                 return ClientModel.findById(parent.clientId)
             }
         }
         // invoices: {
-        //     type: GraphQLList(InvoiceSchema),
+        //     type: GraphQLList(InvoiceType),
         //     resolve(parent, args) {
         //         return InvoiceModel.find({
         //             projectId: parent.projectId
@@ -43,7 +44,7 @@ const ProjectSchema = new GraphQLObjectType({
 
 const ProjectMutation = {
     addProject: {
-        type: ProjectSchema,
+        type: ProjectType,
         args: {
             clientId: { type: new GraphQLNonNull(GraphQLID) },
             title: { type: new GraphQLNonNull(GraphQLString) },
@@ -70,6 +71,6 @@ const ProjectMutation = {
 
 module.exports = {
     ProjectModel,
-    ProjectSchema,
+    ProjectType,
     ProjectMutation
 };

@@ -1,11 +1,13 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const BaseRecord = require('./baseRecord');
 const Schema = mongoose.Schema;
 
-const statusSchema = BaseRecord.discriminator('Status', new Schema({
-    status: String
-}));
+const statusSchema = new Schema({
+    status: String,
+    default: Boolean,
+    modifiedDate: { type: Date, default: Date.now },
+    modifiedBy: String
+});
 
-module.exports = mongoose.model('Status', statusSchema.schema);
+module.exports = mongoose.model('Status', statusSchema);

@@ -1,10 +1,9 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const BaseRecord = require('./baseRecord');
 const Schema = mongoose.Schema;
 
-const clientSchema = BaseRecord.discriminator('Client', new Schema({
+const clientSchema = new Schema({
     clientName: String,
     descriptor: String,
     primaryContact: String,
@@ -15,7 +14,9 @@ const clientSchema = BaseRecord.discriminator('Client', new Schema({
     zip: String,
     zipExt: String,
     notes: String,
-    payOnly: Boolean
-}));
+    payOnly: Boolean,
+    modifiedDate: { type: Date, default: Date.now },
+    modifiedBy: String
+});
 
-module.exports = mongoose.model('Client', clientSchema.schema);
+module.exports = mongoose.model('Client', clientSchema);

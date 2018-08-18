@@ -3,7 +3,7 @@
 const graphql = require('graphql');
 const ClientModel = require('../models/client');
 const ProjectModel = require('../models/project');
-const {ProjectSchema} = require('./project');
+const {ProjectType} = require('./project');
 
 const {
     GraphQLObjectType,
@@ -14,7 +14,7 @@ const {
     GraphQLNonNull
 } = graphql;
 
-const ClientSchema = new GraphQLObjectType({
+const ClientType = new GraphQLObjectType({
     name: 'Client',
     fields: () => ({
         id: { type: GraphQLID },
@@ -30,7 +30,7 @@ const ClientSchema = new GraphQLObjectType({
         notes: { type: GraphQLString },
         payOnly: { type: GraphQLBoolean },
         projects: {
-            type: GraphQLList(ProjectSchema),
+            type: GraphQLList(ProjectType),
             resolve(parent, args) {
                 return ProjectModel.find({
                     clientId: parent.clientId
@@ -42,7 +42,7 @@ const ClientSchema = new GraphQLObjectType({
 
 const ClientMutation = {
     addClient: {
-        type: ClientSchema,
+        type: ClientType,
         args: {
             clientName: { type: new GraphQLNonNull(GraphQLString) },
             descriptor: { type: GraphQLString },
@@ -77,6 +77,6 @@ const ClientMutation = {
 
 module.exports = {
     ClientModel,
-    ClientSchema,
+    ClientType,
     ClientMutation
 };
